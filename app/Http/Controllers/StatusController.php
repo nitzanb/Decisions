@@ -14,6 +14,9 @@ class StatusController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     *  This is the main page handler, It will list all statuses.
+     */
     public function index()
     {
         $statuses = Status::all();
