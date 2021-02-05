@@ -1,11 +1,9 @@
 <?php
 
-use App\Http\Controllers\DecisionController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\StatusController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -33,4 +31,3 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::inertia('/about', 'Client/AboutComponent');
 Route::resource('/statuses', StatusController::class);
-Route::resource('/decisions', DecisionController::class);
