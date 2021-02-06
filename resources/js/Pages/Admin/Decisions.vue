@@ -31,8 +31,8 @@
                             </p>
                         </header>
                         <footer class="flex items-center justify-between leading-none p-2 md:p-4">
-                            <button @click="edit(status)" class="inline-flex items-center justify-center px-2 py-1 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">Edit</button>
-                            <button @click="deleteRow(status)" class="inline-flex items-center justify-center px-2 py-1 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-red-200 hover:bg-indigo-50">Delete</button>
+                            <button @click="edit(decision)" class="inline-flex items-center justify-center px-2 py-1 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">Edit</button>
+                            <button @click="deleteRow(decision)" class="inline-flex items-center justify-center px-2 py-1 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-red-200 hover:bg-indigo-50">Delete</button>
                         </footer>
                     </article>
                     <!-- END Card -->
@@ -59,8 +59,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="status_id">Status</label>
-                                <select  id="status_id" v-model='form.status_id' >
-                                    <option value="null" selected>Select status</option>
+                                <select  id="status_id" v-model='form.status_id' >                                   
                                     <option v-for="status in statuses"  :key=status.id v-bind:value="status.id">{{status.name}}</option>
                                 </select>
                                

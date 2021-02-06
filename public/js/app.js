@@ -3657,7 +3657,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -33592,7 +33591,7 @@ var render = function() {
                                 "inline-flex items-center justify-center px-2 py-1 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700",
                               on: {
                                 click: function($event) {
-                                  return _vm.edit(_vm.status)
+                                  return _vm.edit(decision)
                                 }
                               }
                             },
@@ -33606,7 +33605,7 @@ var render = function() {
                                 "inline-flex items-center justify-center px-2 py-1 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-red-200 hover:bg-indigo-50",
                               on: {
                                 click: function($event) {
-                                  return _vm.deleteRow(_vm.status)
+                                  return _vm.deleteRow(decision)
                                 }
                               }
                             },
@@ -33728,20 +33727,14 @@ var render = function() {
                         }
                       }
                     },
-                    [
-                      _c("option", { attrs: { value: "null", selected: "" } }, [
-                        _vm._v("Select status")
-                      ]),
-                      _vm._v(" "),
-                      _vm._l(_vm.statuses, function(status) {
-                        return _c(
-                          "option",
-                          { key: status.id, domProps: { value: status.id } },
-                          [_vm._v(_vm._s(status.name))]
-                        )
-                      })
-                    ],
-                    2
+                    _vm._l(_vm.statuses, function(status) {
+                      return _c(
+                        "option",
+                        { key: status.id, domProps: { value: status.id } },
+                        [_vm._v(_vm._s(status.name))]
+                      )
+                    }),
+                    0
                   )
                 ])
               ]

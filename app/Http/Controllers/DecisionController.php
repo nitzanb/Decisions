@@ -50,7 +50,11 @@ class DecisionController extends Controller
     {
         if($request->has('id'))
         {
-            Decision::find($request->input('id'))->update($request->all());
+            $decision = Decision::find($request->input('id'));
+            $decision->name = $request->name;
+            $decision->status_id = $request->status_id;
+            $decision->description = $request->description;
+            $decision->save();
             return redirect()->back();
         }
     }
