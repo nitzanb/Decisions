@@ -1,11 +1,6 @@
 <template>
-    <app-layout>
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Statuses
-            </h2>
-             
-        </template>
+    <dash-layout>
+        
 
         <div class="container max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
@@ -39,10 +34,8 @@
                 </div>
                 <!--END Loop-->
             </div>
-        </div>
-
-
-<jet-dialog-modal :show="editMode || addMode" @close="editMode = false">
+            
+        <jet-dialog-modal :show="editMode || addMode" @close="editMode = false">
                         <template #title>
                             New status
                         </template>
@@ -67,15 +60,18 @@
                         </template>
               
                </jet-dialog-modal><!-- /.modal -->
+        </div>
+
+
 
     
 
   
         
-    </app-layout>
+    </dash-layout>
 </template>
 <script>
-      import AppLayout from '@/Layouts/AppLayout'
+      import DashLayout from '@/Layouts/DashLayout'
       import Button from '../../Jetstream/Button.vue'
       import JetDialogModal from '@/Jetstream/DialogModal'
       import JetInput from '@/Jetstream/Input'
@@ -83,7 +79,7 @@
 
      export default {
         components: {
-            AppLayout,
+            DashLayout,
             Button,
             JetButton,
             JetInput,
