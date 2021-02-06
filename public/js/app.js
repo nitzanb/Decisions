@@ -3654,6 +3654,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -3673,9 +3677,11 @@ __webpack_require__.r(__webpack_exports__);
       editMode: false,
       addMode: false,
       currentlyEditingStatus: false,
+      selectedStatus: 1,
       form: {
         name: null,
-        description: null
+        description: null,
+        status_id: null
       }
     };
   },
@@ -3688,7 +3694,8 @@ __webpack_require__.r(__webpack_exports__);
     reset: function reset() {
       this.form = {
         name: null,
-        description: null
+        description: null,
+        status_id: null
       };
     },
     save: function save(data) {
@@ -33685,19 +33692,56 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "Status" } }, [_vm._v("Status")]),
+                  _c("label", { attrs: { for: "status_id" } }, [
+                    _vm._v("Status")
+                  ]),
                   _vm._v(" "),
                   _c(
                     "select",
-                    { attrs: { name: "status_id" } },
-                    _vm._l(_vm.statuses, function(status) {
-                      return _c(
-                        "option",
-                        { key: status.id, domProps: { value: status.id } },
-                        [_vm._v(_vm._s(status.name))]
-                      )
-                    }),
-                    0
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.status_id,
+                          expression: "form.status_id"
+                        }
+                      ],
+                      attrs: { id: "status_id" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.form,
+                            "status_id",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "null", selected: "" } }, [
+                        _vm._v("Select status")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.statuses, function(status) {
+                        return _c(
+                          "option",
+                          { key: status.id, domProps: { value: status.id } },
+                          [_vm._v(_vm._s(status.name))]
+                        )
+                      })
+                    ],
+                    2
                   )
                 ])
               ]

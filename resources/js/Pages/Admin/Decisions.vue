@@ -58,10 +58,14 @@
                                 <jet-input class="mt-1 block w-full" required id="description" v-model="form.description"/>
                             </div>
                             <div class="form-group">
-                                <label for="Status">Status</label>
-                                <select name="status_id">
-                                    <option v-for="status in statuses"  :key=status.id :value="status.id">{{status.name}}</option>
+                                <label for="status_id">Status</label>
+                                <select  id="status_id" v-model='form.status_id' >
+                                    <option value="null" selected>Select status</option>
+                                    <option v-for="status in statuses"  :key=status.id v-bind:value="status.id">{{status.name}}</option>
                                 </select>
+                               
+
+                                
                             </div>
                         </template>
                         <template #footer>
@@ -101,9 +105,11 @@
                 editMode: false,
                 addMode : false,
                 currentlyEditingStatus: false,
+                selectedStatus : 1,
                 form: {
                     name: null,
                     description: null,
+                    status_id: null,
                 },
             }
         },
@@ -118,6 +124,7 @@
                 this.form = {
                     name: null,
                     description: null,
+                    status_id: null,
                 }
             },
             save: function (data) {
