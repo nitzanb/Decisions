@@ -36,10 +36,10 @@
                     <!-- Card -->
                     <article class="overflow-hidden rounded-lg shadow-lg bg-white mb-5">
                         <header class=" items-center justify-between leading-tight p-2 md:p-4">
-                            <h1 class="text-lg">                               
+                            <h1 class="font-semibold text-2xl">                               
                                 {{ status.name }}                               
                             </h1>
-                        <p class="mt-2 text-sm">
+                        <p class="mt-2">
                                     {{ status.description }}
                                 </p>
                         </header>

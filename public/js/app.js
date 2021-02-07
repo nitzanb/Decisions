@@ -34626,7 +34626,7 @@ var render = function() {
                         " items-center justify-between leading-tight p-2 md:p-4"
                     },
                     [
-                      _c("h1", { staticClass: "text-lg" }, [
+                      _c("h1", { staticClass: "font-semibold text-3xl" }, [
                         _vm._v(
                           "                               \n                            " +
                             _vm._s(status.name) +
@@ -34634,7 +34634,7 @@ var render = function() {
                         )
                       ]),
                       _vm._v(" "),
-                      _c("p", { staticClass: "mt-2 text-sm" }, [
+                      _c("p", { staticClass: "mt-2" }, [
                         _vm._v(
                           "\n                                " +
                             _vm._s(status.description) +
