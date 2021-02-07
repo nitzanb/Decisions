@@ -3809,6 +3809,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Jetstream_Button_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
 /* harmony import */ var _Jetstream_DialogModal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Jetstream/DialogModal */ "./resources/js/Jetstream/DialogModal.vue");
 /* harmony import */ var _Jetstream_Input__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Jetstream/Input */ "./resources/js/Jetstream/Input.vue");
+/* harmony import */ var _Jetstream_NavLink__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Jetstream/NavLink */ "./resources/js/Jetstream/NavLink.vue");
 //
 //
 //
@@ -3881,6 +3882,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -3892,7 +3917,8 @@ __webpack_require__.r(__webpack_exports__);
     Button: _Jetstream_Button_vue__WEBPACK_IMPORTED_MODULE_1__.default,
     JetButton: _Jetstream_Button_vue__WEBPACK_IMPORTED_MODULE_1__.default,
     JetInput: _Jetstream_Input__WEBPACK_IMPORTED_MODULE_3__.default,
-    JetDialogModal: _Jetstream_DialogModal__WEBPACK_IMPORTED_MODULE_2__.default
+    JetDialogModal: _Jetstream_DialogModal__WEBPACK_IMPORTED_MODULE_2__.default,
+    JetNavLink: _Jetstream_NavLink__WEBPACK_IMPORTED_MODULE_4__.default
   },
   props: ['statuses'],
   data: function data() {
@@ -3932,14 +3958,13 @@ __webpack_require__.r(__webpack_exports__);
       this.editMode = true;
     },
     update: function update(data) {
-      if (!confirm('Sure')) return;
       data._method = 'PUT';
       this.$inertia.post('/statuses/' + data.id, data);
       this.reset();
       this.closeModal();
     },
     deleteRow: function deleteRow(data) {
-      if (!confirm('Sure')) return;
+      if (!confirm("Are you sure you want to delete \"".concat(data.name, "\" status"))) return;
       data._method = 'DELETE';
       this.$inertia.post('/statuses/' + data.id, data);
       this.reset();
@@ -34501,274 +34526,319 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("dash-layout", [
-    _c(
-      "div",
-      { staticClass: "container max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8" },
-      [
-        _c(
-          "div",
-          { staticClass: "bg-white overflow-hidden shadow-xl sm:rounded-lg" },
-          [
+    _c("div", { attrs: { id: "home" } }, [
+      _c(
+        "nav",
+        {
+          staticClass: "text-sm font-semibold mb-6",
+          attrs: { "aria-label": "Breadcrumb" }
+        },
+        [
+          _c("ol", { staticClass: "list-none p-0 inline-flex" }, [
             _c(
-              "div",
-              { staticClass: "container mx-auto" },
+              "li",
+              { staticClass: "flex items-center text-blue-500" },
               [
-                _c("h3", { staticClass: "px-6 py-4 float-left" }, [
-                  _vm._v(" Statuses list")
-                ]),
-                _vm._v(" "),
                 _c(
-                  "jet-button",
+                  "jet-nav-link",
                   {
-                    staticClass: "btn btn-primary float-right mx-6 my-4",
-                    attrs: { type: "submit" },
-                    nativeOn: {
-                      click: function($event) {
-                        return _vm.createNew(_vm.form)
-                      }
+                    attrs: {
+                      href: _vm.route("dashboard"),
+                      active: _vm.route().current("dashboard")
                     }
                   },
-                  [_vm._v("+ New")]
+                  [_vm._v("\n                    Dashboard\n                ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "svg",
+                  {
+                    staticClass: "fill-current w-3 h-3 mx-3",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      viewBox: "0 0 320 512"
+                    }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        d:
+                          "M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+                      }
+                    })
+                  ]
                 )
               ],
               1
-            )
-          ]
-        )
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "container max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8" },
-      [
-        _c(
-          "div",
-          { staticClass: "flex flex-wrap -mx-1 lg:-mx-4" },
-          _vm._l(_vm.statuses, function(status) {
-            return _c(
-              "div",
+            ),
+            _vm._v(" "),
+            _c("li", { staticClass: "flex items-center" }, [
+              _vm._v("\n                Statuses\n            ")
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "lg:flex justify-between items-center mb-6" },
+        [
+          _c("p", { staticClass: "text-2xl font-semibold mb-2 lg:mb-0" }, [
+            _vm._v(" Statuses list")
+          ]),
+          _vm._v(" "),
+          _c(
+            "jet-button",
+            {
+              staticClass:
+                "bg-blue-500 hover:bg-blue-600 focus:outline-none rounded-lg px-6 py-2 text-white font-semibold shadow",
+              nativeOn: {
+                click: function($event) {
+                  return _vm.createNew(_vm.form)
+                }
+              }
+            },
+            [_vm._v("\n              + New\n            ")]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "flex flex-wrap -mx-3 mb-20" },
+        _vm._l(_vm.statuses, function(status) {
+          return _c(
+            "div",
+            { key: status.id, staticClass: "w-1/2 xl:w-1/4 px-3" },
+            [
+              _c(
+                "article",
+                {
+                  staticClass:
+                    "overflow-hidden rounded-lg shadow-lg bg-white mb-5"
+                },
+                [
+                  _c(
+                    "header",
+                    {
+                      staticClass:
+                        " items-center justify-between leading-tight p-2 md:p-4"
+                    },
+                    [
+                      _c("h1", { staticClass: "text-lg" }, [
+                        _vm._v(
+                          "                               \n                            " +
+                            _vm._s(status.name) +
+                            "                               \n                        "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "mt-2 text-sm" }, [
+                        _vm._v(
+                          "\n                                " +
+                            _vm._s(status.description) +
+                            "\n                            "
+                        )
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "footer",
+                    {
+                      staticClass:
+                        "flex items-center justify-between leading-none p-2 md:p-4"
+                    },
+                    [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "bg-blue-500 hover:bg-blue-600 focus:outline-none rounded-lg px-6 py-2 text-white font-semibold shadow",
+                          on: {
+                            click: function($event) {
+                              return _vm.edit(status)
+                            }
+                          }
+                        },
+                        [_vm._v("Edit")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "bg-red-500 hover:bg-red-600 focus:outline-none rounded-lg px-6 py-2 text-white font-semibold shadow",
+                          on: {
+                            click: function($event) {
+                              return _vm.deleteRow(status)
+                            }
+                          }
+                        },
+                        [_vm._v("Delete")]
+                      )
+                    ]
+                  )
+                ]
+              )
+            ]
+          )
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "container max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8"
+        },
+        [
+          _c("div", { staticClass: "flex flex-wrap -mx-1 lg:-mx-4" }),
+          _vm._v(" "),
+          _c("jet-dialog-modal", {
+            attrs: { show: _vm.editMode || _vm.addMode },
+            on: {
+              close: function($event) {
+                _vm.editMode = false
+              }
+            },
+            scopedSlots: _vm._u([
               {
-                key: status.id,
-                staticClass:
-                  "my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3"
+                key: "title",
+                fn: function() {
+                  return [
+                    _vm._v(
+                      "\n                        New status\n                    "
+                    )
+                  ]
+                },
+                proxy: true
               },
-              [
-                _c(
-                  "article",
-                  {
-                    staticClass: "overflow-hidden rounded-lg shadow-lg bg-white"
-                  },
-                  [
+              {
+                key: "content",
+                fn: function() {
+                  return [
                     _c(
-                      "header",
-                      {
-                        staticClass:
-                          " items-center justify-between leading-tight p-2 md:p-4"
-                      },
+                      "div",
+                      { staticClass: "form-group" },
                       [
-                        _c("h1", { staticClass: "text-lg" }, [
-                          _vm._v(
-                            "                               \n                            " +
-                              _vm._s(status.name) +
-                              "                               \n                        "
-                          )
+                        _c("label", { attrs: { for: "name" } }, [
+                          _vm._v("Name")
                         ]),
                         _vm._v(" "),
-                        _c("p", { staticClass: "mt-2 text-sm" }, [
-                          _vm._v(
-                            "\n                                " +
-                              _vm._s(status.description) +
-                              "\n                            "
-                          )
-                        ])
-                      ]
+                        _c("jet-input", {
+                          staticClass: "mt-1 block w-full",
+                          attrs: { required: "", id: "name" },
+                          model: {
+                            value: _vm.form.name,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "name", $$v)
+                            },
+                            expression: "form.name"
+                          }
+                        })
+                      ],
+                      1
                     ),
                     _vm._v(" "),
                     _c(
-                      "footer",
-                      {
-                        staticClass:
-                          "flex items-center justify-between leading-none p-2 md:p-4"
-                      },
+                      "div",
+                      { staticClass: "form-group" },
                       [
-                        _c(
-                          "button",
-                          {
-                            staticClass:
-                              "inline-flex items-center justify-center px-2 py-1 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700",
-                            on: {
-                              click: function($event) {
-                                return _vm.edit(status)
-                              }
-                            }
-                          },
-                          [_vm._v("Edit")]
-                        ),
+                        _c("label", { attrs: { for: "description" } }, [
+                          _vm._v("description")
+                        ]),
                         _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass:
-                              "inline-flex items-center justify-center px-2 py-1 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-red-200 hover:bg-indigo-50",
-                            on: {
-                              click: function($event) {
-                                return _vm.deleteRow(status)
-                              }
-                            }
-                          },
-                          [_vm._v("Delete")]
-                        )
-                      ]
+                        _c("jet-input", {
+                          staticClass: "mt-1 block w-full",
+                          attrs: { required: "", id: "description" },
+                          model: {
+                            value: _vm.form.description,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "description", $$v)
+                            },
+                            expression: "form.description"
+                          }
+                        })
+                      ],
+                      1
                     )
                   ]
-                )
-              ]
-            )
-          }),
-          0
-        ),
-        _vm._v(" "),
-        _c("jet-dialog-modal", {
-          attrs: { show: _vm.editMode || _vm.addMode },
-          on: {
-            close: function($event) {
-              _vm.editMode = false
-            }
-          },
-          scopedSlots: _vm._u([
-            {
-              key: "title",
-              fn: function() {
-                return [
-                  _vm._v(
-                    "\n                        New status\n                    "
-                  )
-                ]
+                },
+                proxy: true
               },
-              proxy: true
-            },
-            {
-              key: "content",
-              fn: function() {
-                return [
-                  _c(
-                    "div",
-                    { staticClass: "form-group" },
-                    [
-                      _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
-                      _vm._v(" "),
-                      _c("jet-input", {
-                        staticClass: "mt-1 block w-full",
-                        attrs: { required: "", id: "name" },
-                        model: {
-                          value: _vm.form.name,
-                          callback: function($$v) {
-                            _vm.$set(_vm.form, "name", $$v)
-                          },
-                          expression: "form.name"
+              {
+                key: "footer",
+                fn: function() {
+                  return [
+                    _c(
+                      "jet-button",
+                      {
+                        staticClass: "btn btn-default",
+                        attrs: { type: "button" },
+                        nativeOn: {
+                          click: function($event) {
+                            return _vm.closeModal()
+                          }
                         }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "form-group" },
-                    [
-                      _c("label", { attrs: { for: "description" } }, [
-                        _vm._v("description")
-                      ]),
-                      _vm._v(" "),
-                      _c("jet-input", {
-                        staticClass: "mt-1 block w-full",
-                        attrs: { required: "", id: "description" },
-                        model: {
-                          value: _vm.form.description,
-                          callback: function($$v) {
-                            _vm.$set(_vm.form, "description", $$v)
-                          },
-                          expression: "form.description"
+                      },
+                      [_vm._v("Close")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "jet-button",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.addMode,
+                            expression: "addMode"
+                          }
+                        ],
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "submit" },
+                        nativeOn: {
+                          click: function($event) {
+                            return _vm.save(_vm.form)
+                          }
                         }
-                      })
-                    ],
-                    1
-                  )
-                ]
-              },
-              proxy: true
-            },
-            {
-              key: "footer",
-              fn: function() {
-                return [
-                  _c(
-                    "jet-button",
-                    {
-                      staticClass: "btn btn-default",
-                      attrs: { type: "button" },
-                      nativeOn: {
-                        click: function($event) {
-                          return _vm.closeModal()
+                      },
+                      [_vm._v("Save\n                        ")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "jet-button",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.editMode,
+                            expression: "editMode"
+                          }
+                        ],
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "submit" },
+                        nativeOn: {
+                          click: function($event) {
+                            return _vm.update(_vm.form)
+                          }
                         }
-                      }
-                    },
-                    [_vm._v("Close")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "jet-button",
-                    {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value: _vm.addMode,
-                          expression: "addMode"
-                        }
-                      ],
-                      staticClass: "btn btn-primary",
-                      attrs: { type: "submit" },
-                      nativeOn: {
-                        click: function($event) {
-                          return _vm.save(_vm.form)
-                        }
-                      }
-                    },
-                    [_vm._v("Save\n                        ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "jet-button",
-                    {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value: _vm.editMode,
-                          expression: "editMode"
-                        }
-                      ],
-                      staticClass: "btn btn-primary",
-                      attrs: { type: "submit" },
-                      nativeOn: {
-                        click: function($event) {
-                          return _vm.update(_vm.form)
-                        }
-                      }
-                    },
-                    [_vm._v("Update\n                        ")]
-                  )
-                ]
-              },
-              proxy: true
-            }
-          ])
-        })
-      ],
-      1
-    )
+                      },
+                      [_vm._v("Update\n                        ")]
+                    )
+                  ]
+                },
+                proxy: true
+              }
+            ])
+          })
+        ],
+        1
+      )
+    ])
   ])
 }
 var staticRenderFns = []
@@ -39629,7 +39699,8 @@ var render = function() {
           "div",
           {
             staticClass:
-              "w-full flex items-center text-blue-400 h-10 pl-4 bg-gray-200 hover:bg-gray-200 rounded-lg cursor-pointer"
+              "w-full flex items-center text-blue-400 h-10 pl-4  hover:bg-gray-200 rounded-lg cursor-pointer",
+            class: _vm.route().current("dashboard") ? "bg-gray-200" : ""
           },
           [
             _c(
@@ -39672,7 +39743,8 @@ var render = function() {
           "div",
           {
             staticClass:
-              "w-full flex items-center text-blue-400 h-10 pl-4 hover:bg-gray-200 rounded-lg cursor-pointer"
+              "w-full flex items-center text-blue-400 h-10 pl-4 hover:bg-gray-200 rounded-lg cursor-pointer",
+            class: _vm.route().current("statuses.index") ? "bg-gray-200" : ""
           },
           [
             _c(
