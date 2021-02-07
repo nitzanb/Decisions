@@ -1,22 +1,40 @@
 <template>
     <dash-layout>
-        
+         <div id="home">
+            <!-- Screen header -->
+              <!-- breadcrumb -->
+            <nav class="text-sm font-semibold mb-6" aria-label="Breadcrumb">
+              <ol class="list-none p-0 inline-flex">
+                <li class="flex items-center text-blue-500">
+                  <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
+                        Dashboard
+                    </jet-nav-link>
+                  <svg class="fill-current w-3 h-3 mx-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg>
+                </li>
+                <li class="flex items-center">
+                    Statuses
+                </li>
+               
+              </ol>
+            </nav>
+            <!-- breadcrumb end -->
 
-        <div class="container max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <div class="container mx-auto">
-                    <h3 class="px-6 py-4 float-left"> Statuses list</h3>
-                    <jet-button type="submit" class="btn btn-primary float-right mx-6 my-4"  @click.native="createNew(form)">+ New</jet-button>
-                </div>
+            <!-- title and action buttons -->
+            <div class="lg:flex justify-between items-center mb-6">
+                <p class="text-2xl font-semibold mb-2 lg:mb-0"> Statuses list</p>
+                <jet-button class="bg-blue-500 hover:bg-blue-600 focus:outline-none rounded-lg px-6 py-2 text-white font-semibold shadow" @click.native="createNew(form)">
+                  + New
+                </jet-button>
             </div>
-        </div>
+            <!-- end title and action buttons -->
 
-        <div class="container max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-wrap -mx-1 lg:-mx-4">
+            <!-- End screen header -->
+
+            <div class="flex flex-wrap -mx-3 mb-20">
                 <!-- LOOP -->
-                <div  v-for="status in statuses"  :key=status.id class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
+                <div  v-for="status in statuses"  :key=status.id class="w-1/2 xl:w-1/4 px-3">
                     <!-- Card -->
-                    <article class="overflow-hidden rounded-lg shadow-lg bg-white">
+                    <article class="overflow-hidden rounded-lg shadow-lg bg-white mb-5">
                         <header class=" items-center justify-between leading-tight p-2 md:p-4">
                             <h1 class="text-lg">                               
                                 {{ status.name }}                               
@@ -26,13 +44,18 @@
                                 </p>
                         </header>
                         <footer class="flex items-center justify-between leading-none p-2 md:p-4">
-                            <button @click="edit(status)" class="inline-flex items-center justify-center px-2 py-1 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">Edit</button>
-                            <button @click="deleteRow(status)" class="inline-flex items-center justify-center px-2 py-1 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-red-200 hover:bg-indigo-50">Delete</button>
+                            <button @click="edit(status)" class="bg-blue-500 hover:bg-blue-600 focus:outline-none rounded-lg px-6 py-2 text-white font-semibold shadow">Edit</button>
+                            <button @click="deleteRow(status)" class="bg-red-500 hover:bg-red-600 focus:outline-none rounded-lg px-6 py-2 text-white font-semibold shadow">Delete</button>
                         </footer>
                     </article>
                     <!-- END Card -->
                 </div>
                 <!--END Loop-->
+            </div>
+
+        <div class="container max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-wrap -mx-1 lg:-mx-4">
+                
             </div>
             
         <jet-dialog-modal :show="editMode || addMode" @close="editMode = false">
@@ -67,23 +90,25 @@
     
 
   
-        
+        </div>
     </dash-layout>
 </template>
 <script>
-      import DashLayout from '@/Layouts/DashLayout'
-      import Button from '../../Jetstream/Button.vue'
-      import JetDialogModal from '@/Jetstream/DialogModal'
-      import JetInput from '@/Jetstream/Input'
-      import JetButton from '@/Jetstream/Button'
+    import DashLayout from '@/Layouts/DashLayout'
+    import Button from '../../Jetstream/Button.vue'
+    import JetDialogModal from '@/Jetstream/DialogModal'
+    import JetInput from '@/Jetstream/Input'
+    import JetButton from '@/Jetstream/Button'
+    import JetNavLink from '@/Jetstream/NavLink'
 
-     export default {
+    export default {
         components: {
             DashLayout,
             Button,
             JetButton,
             JetInput,
             JetDialogModal,
+            JetNavLink,
         },
         props: ['statuses'],
         data() {
@@ -124,15 +149,14 @@
                 this.form = Object.assign({}, data);
                 this.editMode = true;
             },
-            update: function (data) {
-                if (!confirm('Sure')) return;
+            update: function (data) {                
                 data._method = 'PUT';
                 this.$inertia.post('/statuses/' + data.id, data)
                 this.reset();
                 this.closeModal();
             },
             deleteRow: function (data) {
-                if (!confirm('Sure')) return;
+                if (!confirm(`Are you sure you want to delete "${data.name}" status`)) return;
                 data._method = 'DELETE';
                 this.$inertia.post('/statuses/' + data.id, data)
                 this.reset();
