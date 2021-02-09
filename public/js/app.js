@@ -3632,10 +3632,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
+/* harmony import */ var _Layouts_DashLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Layouts/DashLayout */ "./resources/js/Layouts/DashLayout.vue");
 /* harmony import */ var _Jetstream_Button_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
 /* harmony import */ var _Jetstream_DialogModal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Jetstream/DialogModal */ "./resources/js/Jetstream/DialogModal.vue");
 /* harmony import */ var _Jetstream_Input__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Jetstream/Input */ "./resources/js/Jetstream/Input.vue");
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3728,7 +3734,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__.default,
+    DashLayout: _Layouts_DashLayout__WEBPACK_IMPORTED_MODULE_0__.default,
     Button: _Jetstream_Button_vue__WEBPACK_IMPORTED_MODULE_1__.default,
     JetButton: _Jetstream_Button_vue__WEBPACK_IMPORTED_MODULE_1__.default,
     JetInput: _Jetstream_Input__WEBPACK_IMPORTED_MODULE_3__.default,
@@ -3790,7 +3796,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   }
 });
-console.log('hi nitzan, I am working');
+console.log('Decisions.vue mounted');
 
 /***/ }),
 
@@ -34223,163 +34229,174 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "app-layout",
-    {
-      scopedSlots: _vm._u([
-        {
-          key: "header",
-          fn: function() {
-            return [
-              _c(
-                "h2",
-                {
-                  staticClass:
-                    "font-semibold text-xl text-gray-800 leading-tight"
-                },
-                [_vm._v("\n                Decisions\n            ")]
-              )
-            ]
-          },
-          proxy: true
-        }
-      ])
-    },
+    "dash-layout",
     [
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "container max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8"
-        },
-        [
-          _c(
-            "div",
-            { staticClass: "bg-white overflow-hidden shadow-xl sm:rounded-lg" },
-            [
+      _c("div", { attrs: { id: "home" } }, [
+        _c(
+          "nav",
+          {
+            staticClass: "text-sm font-semibold mb-6",
+            attrs: { "aria-label": "Breadcrumb" }
+          },
+          [
+            _c("ol", { staticClass: "list-none p-0 inline-flex" }, [
               _c(
-                "div",
-                { staticClass: "container mx-auto" },
+                "li",
+                { staticClass: "flex items-center text-blue-500" },
                 [
-                  _c("h3", { staticClass: "px-6 py-4 float-left" }, [
-                    _vm._v(" Decisions list")
-                  ]),
-                  _vm._v(" "),
                   _c(
-                    "jet-button",
+                    "jet-nav-link",
                     {
-                      staticClass: "btn btn-primary float-right mx-6 my-4",
-                      attrs: { type: "submit" },
-                      nativeOn: {
-                        click: function($event) {
-                          return _vm.createNew(_vm.form)
-                        }
+                      attrs: {
+                        href: _vm.route("dashboard"),
+                        active: _vm.route().current("dashboard")
                       }
                     },
-                    [_vm._v("+ New")]
+                    [
+                      _vm._v(
+                        "\n                    Dashboard\n                "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "svg",
+                    {
+                      staticClass: "fill-current w-3 h-3 mx-3",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        viewBox: "0 0 320 512"
+                      }
+                    },
+                    [
+                      _c("path", {
+                        attrs: {
+                          d:
+                            "M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+                        }
+                      })
+                    ]
                   )
                 ],
                 1
-              )
-            ]
-          )
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "container max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8"
-        },
-        [
-          _c(
-            "div",
-            { staticClass: "flex flex-wrap -mx-1 lg:-mx-4" },
-            _vm._l(_vm.decisions, function(decision) {
-              return _c(
-                "div",
-                {
-                  key: decision.id,
-                  staticClass:
-                    "my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3"
-                },
-                [
-                  _c(
-                    "article",
-                    {
-                      staticClass:
-                        "overflow-hidden rounded-lg shadow-lg bg-white"
-                    },
-                    [
-                      _c(
-                        "header",
-                        {
-                          staticClass:
-                            " items-center justify-between leading-tight p-2 md:p-4"
-                        },
-                        [
-                          _c("h1", { staticClass: "text-lg" }, [
-                            _vm._v(
-                              "                               \n                                " +
-                                _vm._s(decision.name) +
-                                "                               \n                            "
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "mt-2 text-sm" }, [
-                            _vm._v(
-                              "\n                                    " +
-                                _vm._s(decision.description) +
-                                "\n                            "
-                            )
-                          ])
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "footer",
-                        {
-                          staticClass:
-                            "flex items-center justify-between leading-none p-2 md:p-4"
-                        },
-                        [
-                          _c(
-                            "button",
-                            {
-                              staticClass:
-                                "inline-flex items-center justify-center px-2 py-1 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700",
-                              on: {
-                                click: function($event) {
-                                  return _vm.edit(decision)
-                                }
-                              }
-                            },
-                            [_vm._v("Edit")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass:
-                                "inline-flex items-center justify-center px-2 py-1 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-red-200 hover:bg-indigo-50",
-                              on: {
-                                click: function($event) {
-                                  return _vm.deleteRow(decision)
-                                }
-                              }
-                            },
-                            [_vm._v("Delete")]
+              ),
+              _vm._v(" "),
+              _c("li", { staticClass: "flex items-center" }, [
+                _vm._v("\n                Decisions\n            ")
+              ])
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "lg:flex justify-between items-center mb-6" },
+          [
+            _c("p", { staticClass: "text-2xl font-semibold mb-2 lg:mb-0" }, [
+              _vm._v(" Decisions list")
+            ]),
+            _vm._v(" "),
+            _c(
+              "jet-button",
+              {
+                staticClass:
+                  "bg-blue-500 hover:bg-blue-600 focus:outline-none rounded-lg px-6 py-2 text-white font-semibold shadow",
+                nativeOn: {
+                  click: function($event) {
+                    return _vm.createNew(_vm.form)
+                  }
+                }
+              },
+              [_vm._v("\n              + New\n            ")]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "flex flex-wrap -mx-3 mb-20" },
+          _vm._l(_vm.decisions, function(decision) {
+            return _c(
+              "div",
+              { key: decision.id, staticClass: "w-1/2 xl:w-1/4 px-3" },
+              [
+                _c(
+                  "article",
+                  {
+                    staticClass:
+                      "overflow-hidden rounded-lg shadow-lg bg-white mb-5"
+                  },
+                  [
+                    _c(
+                      "header",
+                      {
+                        staticClass:
+                          " items-center justify-between leading-tight p-2 md:p-4"
+                      },
+                      [
+                        _c("h1", { staticClass: "font-semibold text-2xl" }, [
+                          _vm._v(
+                            "                               \n                            " +
+                              _vm._s(decision.name) +
+                              "                               \n                        "
                           )
-                        ]
-                      )
-                    ]
-                  )
-                ]
-              )
-            }),
-            0
-          )
-        ]
-      ),
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "mt-2" }, [
+                          _vm._v(
+                            "\n                                " +
+                              _vm._s(decision.description) +
+                              "\n                            "
+                          )
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "footer",
+                      {
+                        staticClass:
+                          "flex items-center justify-between leading-none p-2 md:p-4"
+                      },
+                      [
+                        _c(
+                          "button",
+                          {
+                            staticClass:
+                              "bg-blue-500 hover:bg-blue-600 focus:outline-none rounded-lg px-6 py-2 text-white font-semibold shadow",
+                            on: {
+                              click: function($event) {
+                                return _vm.edit(_vm.status)
+                              }
+                            }
+                          },
+                          [_vm._v("Edit")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass:
+                              "bg-red-500 hover:bg-red-600 focus:outline-none rounded-lg px-6 py-2 text-white font-semibold shadow",
+                            on: {
+                              click: function($event) {
+                                return _vm.deleteRow(_vm.status)
+                              }
+                            }
+                          },
+                          [_vm._v("Delete")]
+                        )
+                      ]
+                    )
+                  ]
+                )
+              ]
+            )
+          }),
+          0
+        )
+      ]),
       _vm._v(" "),
       _c("jet-dialog-modal", {
         attrs: { show: _vm.editMode || _vm.addMode },
@@ -34392,11 +34409,7 @@ var render = function() {
           {
             key: "title",
             fn: function() {
-              return [
-                _vm._v(
-                  "\n                            New status\n                        "
-                )
-              ]
+              return [_vm._v("\n            New status\n        ")]
             },
             proxy: true
           },
@@ -34536,7 +34549,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("Save\n                            ")]
+                  [_vm._v("Save\n            ")]
                 ),
                 _vm._v(" "),
                 _c(
@@ -34558,7 +34571,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("Update\n                            ")]
+                  [_vm._v("Update\n            ")]
                 )
               ]
             },
