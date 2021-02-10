@@ -117,8 +117,8 @@
         }
     },
     methods: {
-        toggleSidebar() {
-            sideBarOpen = !sideBarOpen;
+        toggleSidebar() {           
+            this.$root.$emit('sideBarOpen', 1);
         },
          switchToTeam(team) {
                 this.$inertia.put(route('current-team.update'), {

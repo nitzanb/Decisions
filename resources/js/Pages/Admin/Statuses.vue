@@ -32,7 +32,7 @@
 
             <div class="flex flex-wrap -mx-3 mb-20">
                 <!-- LOOP -->
-                <div  v-for="status in statuses"  :key=status.id class="w-1/2 xl:w-1/4 px-3">
+                <div  v-for="status in statuses"  :key=status.id class="w-full md:w-1/2 xl:w-1/4 px-3">
                     <!-- Card -->
                     <article class="overflow-hidden rounded-lg shadow-lg bg-white mb-5">
                         <header class=" items-center justify-between leading-tight p-2 md:p-4">

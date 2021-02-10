@@ -39,11 +39,10 @@ export default {
     JetBanner,
   }, 
   data() {
-        return {
-            sideBarOpen : false,
-        }
-    }
-
+      return {
+          sideBarOpen : false,
+      }
+  },
 }
 
 

@@ -101,8 +101,13 @@ export default {
     },
      data() {
         return {
-            sideBarOpen : true,
+            sideBarOpen : false,
         }
-    }
+    },
+    mounted() {
+      this.$root.$on('sideBarOpen', data => {
+        this.sideBarOpen = !this.sideBarOpen;
+    });
+}
 }
 </script>

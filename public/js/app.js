@@ -3636,6 +3636,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Jetstream_Button_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
 /* harmony import */ var _Jetstream_DialogModal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Jetstream/DialogModal */ "./resources/js/Jetstream/DialogModal.vue");
 /* harmony import */ var _Jetstream_Input__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Jetstream/Input */ "./resources/js/Jetstream/Input.vue");
+/* harmony import */ var _Jetstream_NavLink__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Jetstream/NavLink */ "./resources/js/Jetstream/NavLink.vue");
 //
 //
 //
@@ -3727,6 +3728,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 
@@ -3738,7 +3740,8 @@ __webpack_require__.r(__webpack_exports__);
     Button: _Jetstream_Button_vue__WEBPACK_IMPORTED_MODULE_1__.default,
     JetButton: _Jetstream_Button_vue__WEBPACK_IMPORTED_MODULE_1__.default,
     JetInput: _Jetstream_Input__WEBPACK_IMPORTED_MODULE_3__.default,
-    JetDialogModal: _Jetstream_DialogModal__WEBPACK_IMPORTED_MODULE_2__.default
+    JetDialogModal: _Jetstream_DialogModal__WEBPACK_IMPORTED_MODULE_2__.default,
+    JetNavLink: _Jetstream_NavLink__WEBPACK_IMPORTED_MODULE_4__.default
   },
   props: ['decisions', 'statuses'],
   data: function data() {
@@ -6753,7 +6756,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     toggleSidebar: function toggleSidebar() {
-      sideBarOpen = !sideBarOpen;
+      this.$root.$emit('sideBarOpen', 1);
     },
     switchToTeam: function switchToTeam(team) {
       this.$inertia.put(route('current-team.update'), {
@@ -6879,8 +6882,15 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      sideBarOpen: true
+      sideBarOpen: false
     };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    this.$root.$on('sideBarOpen', function (data) {
+      _this.sideBarOpen = !_this.sideBarOpen;
+    });
   }
 });
 
@@ -34691,7 +34701,7 @@ var render = function() {
         _vm._l(_vm.statuses, function(status) {
           return _c(
             "div",
-            { key: status.id, staticClass: "w-1/2 xl:w-1/4 px-3" },
+            { key: status.id, staticClass: "w-full md:w-1/2 xl:w-1/4 px-3" },
             [
               _c(
                 "article",
